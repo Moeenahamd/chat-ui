@@ -76,13 +76,14 @@ export class MessagesComponent implements OnInit {
       const mess:any = this.getLastMessage(element);
       element.latestMessage=mess
       const user = this.users.find((x:any) => x["Phone No"] === element._internalState.uniqueName)
-      if(user.Status == 'inbox'){
+      console.log(user)
+      if(user && user.Status == 'inbox'){
         this.inboxConversations.push(element)
       }
-      else if(user.Status == 'Done' || user.Status == 'done'){
+      else if((user && user.Status == 'Done') || (user &&  user.Status == 'done')){
         this.doneConversations.push(element)
       }
-      else if(user.Status == 'spam'){
+      else if(user && user.Status == 'spam'){
         this.spamConversations.push(element)
       }
     });
