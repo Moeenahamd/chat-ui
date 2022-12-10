@@ -1,0 +1,15 @@
+<form [formGroup]="userForm">
+    <div class="container">
+      <h1>Sign Up</h1>
+  
+      <input type="text" autocomplete="off" formControlName="firstName" placeholder="First Name" name="fname" required>
+      <input type="text" autocomplete="off" formControlName="lastName" placeholder="First Name" name="lname" required>
+      <input type="text" autocomplete="off" formControlName="phone" placeholder="Phone Number" name="phone" required>
+      <input type="password" autocomplete="off" formControlName="password" placeholder="Repeat Password" name="psw" required>
+  
+      <div class="clearfix">
+        <button type="submit" class="signupbtn" (click)="createUser()">Sign Up</button>
+      </div>
+    </div>
+  </form>
+  

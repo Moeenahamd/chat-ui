@@ -1,0 +1,12 @@
+<form [formGroup]="otpForm">
+    <div class="container">
+        <h1>Enter OTP</h1>
+        <input type="text" autocomplete="off" formControlName="otp" placeholder="OPT" name="otp" required>
+        <p style="text-align: left !important;">Please enter OTP you received on your Phone to continue with the chat</p>
+        <a (click)="reSendOtp()">Re-send OTP</a>
+        <div class="clearfix">
+            <button type="submit" class="signupbtn" (click)="sendOtp()">Enter</button>
+        </div>
+    </div>
+</form>
+  

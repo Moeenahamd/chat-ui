@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <div class="row text-white">
+        <div class="col-6">
+        </div>
+        <div class="col-6">
+            <form class="form" [formGroup]="userForm" style="margin: auto; margin-top: 17%;">
+                <h1 class="text-dark text-center">Admin Login</h1>
+                <div class="mt-5">
+                  <input type="text" class="form-control" autocomplete="off" formControlName="userName" placeholder="User Name" name="userName">
+                </div>
+                <div class="mt-4">
+                  <input type="password"  autocomplete="off" formControlName="password" class="form-control" id="pwd" placeholder="Password" name="pswd">
+                </div>
+                <div class="text-dark mt-4 ml-5">
+                  <p>Foret Password? </p>
+                </div>
+                <div class="text-center">
+                    
+                    <button type="submit" class="btn btn-dark mx-4" (click)="signUp()">SignUp</button>
+                    <button type="submit" class="btn btn-dark mx-4" (click)="logIn()">Login</button>
+                </div>
+              </form>
+        </div>
+    </div>
+</div>

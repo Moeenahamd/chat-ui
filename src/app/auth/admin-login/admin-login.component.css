@@ -1,0 +1,18 @@
+.form{
+    width: 500px;
+    height: 500px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 40px;
+}
+
+.form input{
+    padding: 30px;
+    border-radius: 30px;
+    border: 1.5px solid black;
+}
+
+.form button{
+    border-radius: 30px;
+    padding: 15px 55px;
+}
