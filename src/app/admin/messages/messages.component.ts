@@ -11,6 +11,7 @@ import { TwilioService } from 'src/app/services/twilio.service';
 export class MessagesComponent implements OnInit {
   client: any;
   conversation: any;
+  messageUpdate =false;
   constructor(
     private twilioService: TwilioService,
     private authService: AuthService,
@@ -37,12 +38,9 @@ export class MessagesComponent implements OnInit {
     this.toggle = !this.toggle;
   }
   ngOnInit(): void {
-    const dom: HTMLElement = this.elementRef.nativeElement;
-    const elements = dom.querySelectorAll('.side_nav ul li');
-    console.log(elements);
     this.getAllUsers()
     this.twilioService.getAccessToken('admin').subscribe((data:any)=>{
-      this.initClient(data.token);
+       this.initClient(data.token);
     })
   }
 
@@ -54,16 +52,18 @@ export class MessagesComponent implements OnInit {
 
   async initClient(token:any){
     this.client = await new Client(token);
-    console.log(this.client.getSubscribedConversations())
-    this.client.on("conversationUpdated",(conversation:any ,updateReasons :any)=>{
+    await this.client.on("conversationUpdated",(conversation:any ,updateReasons :any)=>{
+      this.getAllUsers();
       this.getAllConversations();
-      this.displayMessages(this.selectedConversation)
+      this.messageUpdate = true;
+      this.displayMessages(this.selectedConversation,this.selectedIndex)
     })
 
-    this.client.on("conversationAdded",(conversation:any)=>{
+    await this.client.on("conversationAdded",(conversation:any)=>{
+      console.log('Conversation Added')
+      this.messageUpdate = false;
       this.getAllConversations();
     })
-    this.getAllConversations()
   }
 
   async getAllConversations(){
@@ -72,11 +72,15 @@ export class MessagesComponent implements OnInit {
     this.doneConversations = [];
     this.spamConversations = [];
     this.conversations = conversations.items;
-    this.conversations.forEach((element:any) => {
+    if(this.displayConversations.length>0){
+      this.sortConversations(this.displayConversations);
+    }
+    await this.conversations.forEach((element:any) => {
+      element.on("messageAdded", (message:any) => {
+      });
       const mess:any = this.getLastMessage(element);
       element.latestMessage=mess
       const user = this.users.find((x:any) => x["Phone No"] === element._internalState.uniqueName)
-      console.log(user)
       if(user && user.Status == 'inbox'){
         this.inboxConversations.push(element)
       }
@@ -87,36 +91,23 @@ export class MessagesComponent implements OnInit {
         this.spamConversations.push(element)
       }
     });
-    this.selectStatus(this.statusSelection);
-
-    if(this.conversations.length>0){
-      // this.conversations = this.conversations.sort((a:any, b:any) => {
-      //   const nameA = a._internalState.lastMessage.dateCreated; // ignore upper and lowercase
-      //   const nameB = b._internalState.lastMessage.dateCreated; // ignore upper and lowercase
-      //   if (nameA < nameB) {
-      //     return -1;
-      //   }
-      //   if (nameA > nameB) {
-      //     return 1;
-      //   }
-      
-      //   // names must be equal
-      //   return 0;
-      // });
+    if(!this.messageUpdate){
+      this.selectStatus(this.statusSelection);
     }
+
+    
     this.selectConversation()
-    await this.conversations.forEach((data:any)=>{
-      data.on("messageAdded", (message:any) => {
-      });
-    })
   }
 
   selectConversation(){
+    
     if(!this.selectedConversation){
       this.selectedConversation = this.displayConversations[0]
     }
+    if(!this.messageUpdate)
     this.displayMessages(this.selectedConversation,0)
   }
+  
   async displayMessages(conversation:any, index?:number){
     this.selectedIndex = index;
     this.selectedConversation = conversation
@@ -129,6 +120,8 @@ export class MessagesComponent implements OnInit {
   async sendMessage(){
     await this.selectedConversation.sendMessage(this.message);
     this.message = '';
+    this.messageUpdate = true;
+    this.selectedIndex = 0;
   }
 
   async getLastMessage(conversation:any){
@@ -141,14 +134,17 @@ export class MessagesComponent implements OnInit {
     this.statusSelection = status;
     if(status == 'inbox'){
       this.displayConversations = this.inboxConversations
-      this.displayMessages(this.displayConversations[0],0)
+      this.sortConversations(this.displayConversations);
+      this.displayMessages(this.displayConversations[0],0);
     }
     else if(status == 'done'){
       this.displayConversations = this.doneConversations
+      this.sortConversations(this.displayConversations);
       this.displayMessages(this.displayConversations[0],0)
     }
     else if(status == 'spam'){
       this.displayConversations = this.spamConversations
+      this.sortConversations(this.displayConversations);
       this.displayMessages(this.displayConversations[0],0)
     }
   }
@@ -159,6 +155,25 @@ export class MessagesComponent implements OnInit {
       this.getAllUsers();
       this.getAllConversations()
     })
+  }
+
+  sortConversations(conversations:any){
+    this.displayConversations = conversations.sort((a:any, b:any) => {
+      if(!a._internalState.lastMessage ||!b._internalState.lastMessage){
+        return 0;
+      }
+      const nameA = a._internalState.lastMessage.dateCreated; // ignore upper and lowercase
+      const nameB = b._internalState.lastMessage.dateCreated; // ignore upper and lowercase
+      if (nameA < nameB) {
+        return 1;
+      }
+      if (nameA > nameB) {
+        return -1;
+      }
+    
+      // names must be equal
+      return 0;
+    });
   }
 
 }

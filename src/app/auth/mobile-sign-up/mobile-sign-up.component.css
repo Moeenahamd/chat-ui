@@ -2,14 +2,14 @@
 * {box-sizing: border-box;}
 
 /* Full-width input fields */
-input[type=text], input[type=password] {
-    width: 100%;
-    padding:25px;
-    margin-top:7%;
-    border: 1px solid white;
-    background: transparent;    
-    border-radius:20px;
-	font-size: 30px;	
+input[type=text], input[type=button] {
+  width: 100%;
+  padding: 15px;
+  margin-top: 10%;
+  border: 1px solid white;
+  background: transparent;
+  border-radius: 20px;
+  font-size: 20px;	
   
   
 }
@@ -28,14 +28,15 @@ hr {
 
 /* Set a style for all buttons */
 button {
-	width:100%;
-    margin-top:7%;
-    padding:25px;
-    border: 1px solid white;    
-    border-radius:20px; 
+  width: 100%;
+    padding: 15px;
+    margin-top: 10%;
+    border: 1px solid white;
+    background: transparent;
+    border-radius: 20px;
+    font-size: 20px;
     background: white;
     color: black;
-	font-size: 30px;
 }
 
 button:hover {
@@ -45,6 +46,7 @@ button:hover {
 
 /* Add padding to container elements */
 .container {
+  margin-top: 200px;
   padding: 5% 10%;
   border: 1px solid white; 
   border-radius:10px; 

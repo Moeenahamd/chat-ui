@@ -16,8 +16,7 @@ export class MobileSignUpComponent implements OnInit {
   userForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
-    phone: new FormControl(''),
-    password: new FormControl(''),
+    phone: new FormControl('')
   });
   ngOnInit(): void {
     
@@ -26,8 +25,7 @@ export class MobileSignUpComponent implements OnInit {
     const payload = {
       firstName: this.userForm.value.firstName,
       lastName: this.userForm.value.lastName,
-      phoneno: this.userForm.value.phone,
-      password: this.userForm.value.password
+      phoneno: this.userForm.value.phone
     }
     this.authService.addUser(payload).subscribe((data:any)=>{
       if(data.success){

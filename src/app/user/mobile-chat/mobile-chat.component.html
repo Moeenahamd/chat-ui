@@ -5,12 +5,11 @@
                 <div  class="card-header msg_head">
                     <div class="d-flex bd-highlight">
                         <div class="img_cont">
-                            <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
+                            <img src="../../../assets/main-logo.png" class="rounded-circle user_img">
                             <span class="online_icon"></span>
                         </div>
                         <div class="user_info">
-                            <h3 *ngIf="isLoading">{{conversation._internalState.friendlyName}}</h3>
-                            <p>Last seen at 7:00pm</p>
+                            <h3 *ngIf="isLoading">Unique Recruits</h3>
                         </div>
                     </div>
                 </div>
@@ -18,7 +17,7 @@
                     <div *ngFor="let message of messages">
                         <div *ngIf="message.author == adminUser" class="d-flex justify-content-start mb-4">
                             <div *ngIf="isLoading" class="img_cont_msg">
-                                <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
+                                <img src="../../../assets/main-logo.png" class="rounded-circle user_img_msg">
                             </div>
                             <div *ngIf="isLoading" class="msg_cotainer">
                                 {{message.state.body}}
