@@ -21,6 +21,7 @@ export class MobileSignUpComponent implements OnInit {
   ngOnInit(): void {
     
   }
+  
   createUser(){
     const payload = {
       firstName: this.userForm.value.firstName,

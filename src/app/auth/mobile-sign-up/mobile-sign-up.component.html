@@ -4,8 +4,10 @@
   
       <input type="text" autocomplete="off" formControlName="firstName" placeholder="First Name" name="fname" required>
       <input type="text" autocomplete="off" formControlName="lastName" placeholder="First Name" name="lname" required>
-      <input type="text" autocomplete="off" formControlName="phone" placeholder="Phone Number" name="phone" required>
-  
+      <div style="margin-top:10%; width: 100%;">
+        <input type="tel" autocomplete="off" id="phone" formControlName="phone" name="phone" required>
+      
+      </div>
       <div class="clearfix">
         <button type="submit" class="signupbtn" (click)="createUser()">Sign Up</button>
       </div>

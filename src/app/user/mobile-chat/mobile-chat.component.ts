@@ -50,8 +50,12 @@ export class MobileChatComponent implements OnInit {
   }
 
   async sendMessage(){
-    await this.conversation.sendMessage(this.message);
-    this.message = '';
+    console.log(this.message.length)
+    if( this.message && this.message != '')
+    {
+      await this.conversation.sendMessage(this.message);
+      this.message = '';
+    }
   }
 
 }

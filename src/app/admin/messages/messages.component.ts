@@ -56,8 +56,22 @@ export class MessagesComponent implements OnInit {
     this.client = await new Client(token);
     await this.client.on("conversationUpdated",(conversation:any ,updateReasons :any)=>{
       this.messageUpdate = true;
-      this.getAllConversations();
-      this.displayMessages(this.selectedConversation,this.selectedIndex)
+      var temp = this.users.find(x=>x["Phone No"] == conversation.conversation.uniqueName)
+      if(temp.Status == 'done' ){
+        const adminToken = localStorage.getItem('adminToken');
+        this.authService.adminUpdateUser(adminToken,conversation.conversation.uniqueName,'inbox').subscribe((data:any)=>{
+          this.getAllUsers();
+        },
+        error=>{
+          if(error.status == 200){
+            this.getAllUsers(); 
+          }
+        })
+      }
+      else{
+        this.getAllConversations();
+        this.displayMessages(this.selectedConversation,this.selectedIndex)
+      }
     })
 
     await this.client.on("conversationAdded",(conversation:any)=>{
@@ -120,10 +134,13 @@ export class MessagesComponent implements OnInit {
   }
 
   async sendMessage(){
-    await this.selectedConversation.sendMessage(this.message);
-    this.message = '';
-    this.messageUpdate = true;
-    this.selectedIndex = 0;
+    if( this.message && this.message != '' && this.message != '\n')
+    {
+      await this.selectedConversation.sendMessage(this.message);
+      this.message = '';
+      this.messageUpdate = true;
+      this.selectedIndex = 0;
+    }
   }
 
   async getLastMessage(conversation:any){
