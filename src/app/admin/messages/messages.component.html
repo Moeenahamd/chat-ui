@@ -39,9 +39,9 @@
                                     <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
                                     <span class="online_icon"></span>
                                 </div>
-                                <div class="user_info">
+                                <div class="user_info" [class.bold]="conversation.latestMessage.__zone_symbol__value.unread">
                                     <h3>{{conversation._internalState.friendlyName}}</h3>
-                                    <p >{{conversation.latestMessage.__zone_symbol__value}}</p>
+                                    <p >{{conversation.latestMessage.__zone_symbol__value.message}}</p>
                                 </div>
                             </div>
                         </li>

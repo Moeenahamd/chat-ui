@@ -162,6 +162,14 @@ li a .active{
 		margin-bottom: auto;
 		margin-left: 15px;
 	}
+	.bold h3{
+		font-weight: bold !important;
+		font-size: 25px !important;
+	}
+	.bold p{ 
+		font-weight: bold !important;
+		font-size: 16px;
+	}
 	.user_info h3{
 		color: white;
         font-size: 20px;

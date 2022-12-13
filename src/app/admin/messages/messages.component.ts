@@ -47,22 +47,21 @@ export class MessagesComponent implements OnInit {
   async getAllUsers(){
     await this.authService.getAllUsers().subscribe((data:any)=>{
       this.users = data.usersData
+      this.messageUpdate = false;
+      this.getAllConversations();
     })
   }
 
   async initClient(token:any){
     this.client = await new Client(token);
     await this.client.on("conversationUpdated",(conversation:any ,updateReasons :any)=>{
-      this.getAllUsers();
-      this.getAllConversations();
       this.messageUpdate = true;
+      this.getAllConversations();
       this.displayMessages(this.selectedConversation,this.selectedIndex)
     })
 
     await this.client.on("conversationAdded",(conversation:any)=>{
-      console.log('Conversation Added')
-      this.messageUpdate = false;
-      this.getAllConversations();
+      this.getAllUsers();
     })
   }
 
@@ -74,6 +73,7 @@ export class MessagesComponent implements OnInit {
     this.conversations = conversations.items;
     if(this.displayConversations.length>0){
       this.sortConversations(this.displayConversations);
+      this.selectedIndex = this.displayConversations.findIndex((x:any)=>x.sid == this.selectedConversation.sid);
     }
     await this.conversations.forEach((element:any) => {
       element.on("messageAdded", (message:any) => {
@@ -114,6 +114,8 @@ export class MessagesComponent implements OnInit {
     this.isLoading = true;
     const messages = await this.selectedConversation.getMessages();
     this.messages = messages.items
+    
+    this.selectedConversation.updateLastReadMessageIndex(this.messages.length - 1)
     this.isMessages = true;
   }
 
@@ -127,8 +129,16 @@ export class MessagesComponent implements OnInit {
   async getLastMessage(conversation:any){
     const lastMessage = await conversation.getMessages()
     const index = lastMessage && await conversation.lastMessage;
+    let unread= false;
+    if(index && conversation.lastReadMessageIndex < index.index){
+      unread= true;
+    }
     let mess:string =index && lastMessage.items[index.index].state.body;
-    return mess;
+    const obj = {
+      "message":mess,
+      "unread":unread
+    }
+    return obj;
   }
   selectStatus(status:string){
     this.statusSelection = status;
@@ -153,7 +163,11 @@ export class MessagesComponent implements OnInit {
     const adminToken = localStorage.getItem('adminToken');
     this.authService.adminUpdateUser(adminToken,this.selectedConversation._internalState.uniqueName,status).subscribe((data:any)=>{
       this.getAllUsers();
-      this.getAllConversations()
+    },
+    error=>{
+      if(error.status == 200){
+        this.getAllUsers(); 
+      }
     })
   }
 
