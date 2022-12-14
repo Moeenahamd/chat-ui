@@ -41,7 +41,7 @@ export class MobileSignUpComponent implements OnInit {
       if(data.success){
         
         this.toastr.success(data.message, "Sign Up")
-        this.router.navigateByUrl('/otp', { state: { phone: this.userForm.value.phone} });
+        this.router.navigateByUrl('/otp', { state: { phone: this.userForm.value.phone.e164Number} });
       }
       else{
         this.toastr.error(data.message, "Sign Up")
