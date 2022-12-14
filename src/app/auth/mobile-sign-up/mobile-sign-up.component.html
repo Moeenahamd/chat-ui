@@ -5,8 +5,20 @@
       <input type="text" autocomplete="off" formControlName="firstName" placeholder="First Name" name="fname" required>
       <input type="text" autocomplete="off" formControlName="lastName" placeholder="First Name" name="lname" required>
       <div style="margin-top:10%; width: 100%;">
-        <input type="tel" autocomplete="off" id="phone" formControlName="phone" name="phone" required>
-      
+        <ngx-intl-tel-input style=" width: 100%;"
+        [cssClass]="'custom'"
+        [preferredCountries]="[CountryISO.UnitedStates, CountryISO.UnitedKingdom]"
+        [enableAutoCountrySelect]="false"
+        [enablePlaceholder]="true"
+        [searchCountryFlag]="true"
+        [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+        [selectFirstCountry]="false"
+        [selectedCountryISO]="CountryISO.India"
+        [maxLength]="15"
+        [phoneValidation]="true"
+        name="phone"
+        formControlName="phone"
+      ></ngx-intl-tel-input>
       </div>
       <div class="clearfix">
         <button type="submit" class="signupbtn" (click)="createUser()">Sign Up</button>

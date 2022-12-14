@@ -1,15 +1,20 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 import { MobileSignUpComponent } from './auth/mobile-sign-up/mobile-sign-up.component';
 import { MobileOtpComponent } from './auth/mobile-otp/mobile-otp.component';
 import { MobileChatComponent } from './user/mobile-chat/mobile-chat.component';
 import { MessagesComponent } from './admin/messages/messages.component';
 import { AdminLoginComponent } from './auth/admin-login/admin-login.component';
-import { HttpClientModule } from '@angular/common/http';
 
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,13 +23,16 @@ import { HttpClientModule } from '@angular/common/http';
     MobileChatComponent,
     MessagesComponent,
     AdminLoginComponent
-  ],
+      ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
     FormsModule,
+    AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    NgxIntlTelInputModule
     
   ],
   providers: [],

@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { Client, State } from '@twilio/conversations';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import { TwilioService } from 'src/app/services/twilio.service';
 
@@ -15,7 +16,7 @@ export class MessagesComponent implements OnInit {
   constructor(
     private twilioService: TwilioService,
     private authService: AuthService,
-    private elementRef: ElementRef) { }
+    private toastr: ToastrService) { }
   adminUser= 'admin'
   selectedIndex: any;
   clicked :any
@@ -180,10 +181,13 @@ export class MessagesComponent implements OnInit {
     const adminToken = localStorage.getItem('adminToken');
     this.authService.adminUpdateUser(adminToken,this.selectedConversation._internalState.uniqueName,status).subscribe((data:any)=>{
       this.getAllUsers();
+      
+      this.toastr.success('Conversation moved to ' + status, "Status")
     },
     error=>{
       if(error.status == 200){
         this.getAllUsers(); 
+        this.toastr.success('Conversation moved to ' + status, "Status")
       }
     })
   }

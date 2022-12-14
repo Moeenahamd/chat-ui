@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class AdminLoginComponent implements OnInit {
 
   constructor(
     private authService:AuthService,
+    private toastr: ToastrService,
     private router:Router) { }
 
   userForm = new FormGroup({
@@ -30,6 +32,7 @@ export class AdminLoginComponent implements OnInit {
       password: this.userForm.value.password
     }
     this.authService.adminLogin(payload).subscribe((data:any)=>{
+      this.toastr.success("Logged In Successfully", "Admin Login")
       localStorage.setItem('adminToken',data.token)
       this.router.navigateByUrl('/messages');
     },
