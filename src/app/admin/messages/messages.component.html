@@ -65,8 +65,9 @@
                     <span class="action_menu_btn"><i class="fas fa-ellipsis-v" (click)="toggleDropDown()"></i></span>
 					<div *ngIf="toggle" class="action_menu">
 						<ul>
-							<li (click)="markStatus('done')"> Mark Done</li>
-							<li (click)="markStatus('spam')"> Mark Spam</li>
+							<li *ngIf="statusSelection == 'spam' || statusSelection == 'inbox'" (click)="markStatus('done')"> Mark Done</li>
+							<li *ngIf="statusSelection == 'done' || statusSelection == 'inbox'" (click)="markStatus('spam')"> Mark Spam</li>
+							<li *ngIf="statusSelection == 'spam'" (click)="markStatus('inbox')"> Mark Inbox</li>
 						</ul>
 					</div>
                 </div>
@@ -76,13 +77,13 @@
                             <div *ngIf="isMessages" class="img_cont_msg">
                                 <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
                             </div>
-                            <div *ngIf="isMessages" class="msg_cotainer">
+                            <div *ngIf="isMessages" class="msg_cotainer" style="min-width: 90px;max-width: 50%;">
                                 {{message.state.body}}
                                 <span class="msg_time">{{ message.state.dateUpdated | date:'short' }}</span>
                             </div>
                         </div>
                         <div *ngIf="message.author == adminUser"  class="d-flex justify-content-end mb-4">
-                            <div class="msg_cotainer_send">
+                            <div class="msg_cotainer_send" style="min-width: 90px;max-width: 50%;">
                                 {{message.body}}
                                 <span class="msg_time_send">{{ message.dateCreated | date:'short' }}</span>
                             </div>
@@ -94,7 +95,7 @@
                         <div class="input-group-append">
                             <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
                         </div>
-                        <textarea name="message" class="form-control type_msg" (keyup.enter)="sendMessage()" [(ngModel)]="message" placeholder="Type your message..."></textarea>
+                        <input name="message" class="form-control type_msg" (keyup.enter)="sendMessage()" [(ngModel)]="message" placeholder="Type your message...">
                         <div class="input-group-append">
                             <span class="input-group-text send_btn" (click)="sendMessage()"><i class="fas fa-location-arrow"></i></span>
                         </div>

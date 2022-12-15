@@ -19,13 +19,13 @@
                             <div *ngIf="isLoading" class="img_cont_msg">
                                 <img src="../../../assets/main-logo.png" class="rounded-circle user_img_msg">
                             </div>
-                            <div *ngIf="isLoading" class="msg_cotainer">
+                            <div *ngIf="isLoading" class="msg_cotainer" style="min-width: 90px;max-width: 50%;">
                                 {{message.state.body}}
                                 <span class="msg_time">{{ message.state.dateUpdated | date:'short' }}</span>
                             </div>
                         </div>
                         <div *ngIf="message.author != adminUser"  class="d-flex justify-content-end mb-4">
-                            <div class="msg_cotainer_send">
+                            <div class="msg_cotainer_send" style="min-width: 90px;max-width: 50%;">
                                 {{message.body}}
                                 <span class="msg_time_send">{{ message.dateCreated | date:'short' }}</span>
                             </div>
@@ -37,7 +37,7 @@
                         <div class="input-group-append">
                             <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
                         </div>
-                        <textarea name="message" class="form-control type_msg" [(ngModel)]="message" placeholder="Type your message..."></textarea>
+                        <input name="message" class="form-control type_msg" [(ngModel)]="message" placeholder="Type your message...">
                         <div class="input-group-append">
                             <span class="input-group-text send_btn" ><i class="fas fa-location-arrow" (click)="sendMessage()"></i></span>
                         </div>

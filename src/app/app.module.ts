@@ -15,6 +15,7 @@ import { MessagesComponent } from './admin/messages/messages.component';
 import { AdminLoginComponent } from './auth/admin-login/admin-login.component';
 
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { HomeComponent } from './home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,8 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
     MobileOtpComponent,
     MobileChatComponent,
     MessagesComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    HomeComponent
       ],
   imports: [
     BrowserModule,
