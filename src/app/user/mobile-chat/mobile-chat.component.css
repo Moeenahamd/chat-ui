@@ -176,8 +176,12 @@ li a .active{
 		margin-bottom: auto;
 		margin-left: 10px;
         border-radius: 0px 60px 60px 0px;
-        background-color: rgb(15,130,255);
-        padding: 15px 25px;
+		
+
+		background: rgb(2,0,36);
+background: linear-gradient(270deg, rgba(2,0,36,1) 0%, rgba(124,54,255,1) 0%, rgba(124,40,197,1) 76%);
+
+		padding: 15px 25px;
         font-size: 22px;
 		position: relative;
         color: white;
