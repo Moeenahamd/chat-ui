@@ -93,13 +93,16 @@
                 <div class="card-footer">
                     <div class="input-group">
                         <div class="input-group-append">
-                            <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
+                            <!-- <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span> -->
+                            <button (click)="isEmojiPickerVisible = !isEmojiPickerVisible;" style="border:none;background: rgba(0,0,0,0.3);outline: none;">😀</button>
                         </div>
                         <input name="message" class="form-control type_msg" (keyup.enter)="sendMessage()" [(ngModel)]="message" placeholder="Type your message...">
                         <div class="input-group-append">
                             <span class="input-group-text send_btn" (click)="sendMessage()"><i class="fas fa-location-arrow"></i></span>
                         </div>
                     </div>
+                    
+                    <emoji-mart class="emoji-mart" style="position: absolute;bottom: 70px;" *ngIf="isEmojiPickerVisible" (emojiSelect)="addEmoji($event)" title="Choose your emoji"></emoji-mart>    
                 </div>
             </div>
         </div>

@@ -11,6 +11,7 @@ import { TwilioService } from 'src/app/services/twilio.service';
 })
 export class MessagesComponent implements OnInit {
   client: any;
+  isEmojiPickerVisible =false;
   conversation: any;
   messageUpdate =false;
   constructor(
@@ -43,6 +44,11 @@ export class MessagesComponent implements OnInit {
     this.twilioService.getAccessToken('admin').subscribe((data:any)=>{
        this.initClient(data.token);
     })
+  }
+
+  addEmoji(event:any) {
+    this.message = this.message? `${this.message}${event.emoji.native}`:`${event.emoji.native}`;
+    this.isEmojiPickerVisible = false;
   }
 
   async getAllUsers(){

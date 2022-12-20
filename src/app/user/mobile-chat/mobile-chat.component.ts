@@ -11,6 +11,7 @@ import { TwilioService } from 'src/app/services/twilio.service';
 export class MobileChatComponent implements OnInit {
 
   user:string = '923406929265'
+  isEmojiPickerVisible =false;
   client: any;
   conversation: any;
   messages:any;
@@ -58,4 +59,9 @@ export class MobileChatComponent implements OnInit {
     }
   }
 
+  addEmoji(event:any) {
+    this.message = this.message? `${this.message}${event.emoji.native}`:`${event.emoji.native}`;
+    this.isEmojiPickerVisible = false;
+  }
+ 
 }

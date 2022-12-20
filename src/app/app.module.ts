@@ -13,7 +13,7 @@ import { MobileOtpComponent } from './auth/mobile-otp/mobile-otp.component';
 import { MobileChatComponent } from './user/mobile-chat/mobile-chat.component';
 import { MessagesComponent } from './admin/messages/messages.component';
 import { AdminLoginComponent } from './auth/admin-login/admin-login.component';
-
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { HomeComponent } from './home/home.component';
 @NgModule({
@@ -34,7 +34,8 @@ import { HomeComponent } from './home/home.component';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    NgxIntlTelInputModule
+    NgxIntlTelInputModule,
+    PickerModule
     
   ],
   providers: [],
