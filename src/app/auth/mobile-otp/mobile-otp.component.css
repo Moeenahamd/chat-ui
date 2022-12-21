@@ -4,7 +4,7 @@
 /* Full-width input fields */
 input[type=text], input[type=password] {
     width: 100%;
-    padding:20px;
+    padding:10px 20px;
     margin-top:7%;
     border: 1px solid white;
     background: transparent;    
@@ -29,13 +29,14 @@ hr {
 /* Set a style for all buttons */
 button {
 	width:100%;
-    margin-top:7%;
-    padding:20px;
-    border: 1px solid white;    
-    border-radius:20px; 
-    background: white;
-    color: black;
+  margin-top:7%;
+  padding:10px 20px;
+  border: 1px solid white;    
+  border-radius:20px; 
+  background: white;
+  color: black;
 	font-size: 25px;
+  cursor: pointer;
 }
 
 button:hover {
@@ -45,13 +46,14 @@ button:hover {
 
 /* Add padding to container elements */
 .container {
-  padding: 5%;
+  margin-top: 200px;
+  padding: 5% 5%;
   border: 1px solid white; 
   border-radius:10px; 
   background:#053563;
   text-align: center;
   color: white;
-  
+  height: 74vh;
 }
 
 /* Clear floats */

@@ -133,9 +133,9 @@ export class MessagesComponent implements OnInit {
     this.selectedIndex = index;
     this.selectedConversation = conversation
     this.isLoading = true;
-    const messages = await this.selectedConversation.getMessages();
+    const messages = await this.selectedConversation.getMessages(1000);
     this.messages = messages.items
-    
+    debugger
     this.selectedConversation.updateLastReadMessageIndex(this.messages.length - 1)
     this.isMessages = true;
   }
@@ -151,7 +151,7 @@ export class MessagesComponent implements OnInit {
   }
 
   async getLastMessage(conversation:any){
-    const lastMessage = await conversation.getMessages()
+    const lastMessage = await conversation.getMessages(1000)
     const index = lastMessage && await conversation.lastMessage;
     let unread= false;
     if(index && conversation.lastReadMessageIndex < index.index){

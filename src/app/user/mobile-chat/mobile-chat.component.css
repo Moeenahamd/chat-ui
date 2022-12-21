@@ -176,13 +176,10 @@ li a .active{
 		margin-bottom: auto;
 		margin-left: 10px;
         border-radius: 0px 60px 60px 0px;
-		
-
 		background: rgb(2,0,36);
-background: linear-gradient(270deg, rgba(2,0,36,1) 0%, rgba(124,54,255,1) 0%, rgba(124,40,197,1) 76%);
-
-		padding: 15px 25px;
-        font-size: 22px;
+		background: linear-gradient(270deg, rgba(2,0,36,1) 0%, rgba(124,54,255,1) 0%, rgba(124,40,197,1) 76%);
+		padding: 15px;
+        font-size: 20px;
 		position: relative;
         color: white;
 	}
@@ -192,9 +189,9 @@ background: linear-gradient(270deg, rgba(2,0,36,1) 0%, rgba(124,54,255,1) 0%, rg
 		margin-right: 10px;
         border-radius: 60px 0px 0px 60px;
         background-color: rgba(0,0,0,0.3);
-        padding: 15px 25px;
+        padding: 15px;
         color: white;
-        font-size: 22px;
+        font-size: 20px;
 		position: relative;
 	}
 	.msg_time{

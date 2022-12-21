@@ -46,7 +46,7 @@ export class MobileChatComponent implements OnInit {
 
   async displayMessages(){
     this.isLoading = true;
-    const messages = await this.conversation.getMessages();
+    const messages = await this.conversation.getMessages(1000);
     this.messages = messages.items
   }
 

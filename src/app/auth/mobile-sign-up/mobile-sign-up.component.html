@@ -1,4 +1,4 @@
-<form [formGroup]="userForm" style="padding: 20px;">
+<form [formGroup]="userForm" style="height:100vh;padding: 20px;background-image: url('../../../assets/background.jpg')">
     <div class="container">
       <h1>Sign Up</h1>
   
@@ -13,7 +13,7 @@
         [searchCountryFlag]="true"
         [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
         [selectFirstCountry]="false"
-        [selectedCountryISO]="CountryISO.India"
+        [selectedCountryISO]="CountryISO.UnitedStates"
         [maxLength]="15"
         [phoneValidation]="true"
         name="phone"

@@ -1,9 +1,9 @@
-<form [formGroup]="otpForm">
+<form [formGroup]="otpForm" style="height:100vh;padding: 20px;background-image: url('../../../assets/background.jpg')">
     <div class="container">
         <h1>Enter OTP</h1>
-        <input type="text" autocomplete="off" formControlName="otp" placeholder="OPT" name="otp" required>
-        <p style="text-align: left !important;">Please enter OTP you received on your Phone to continue with the chat</p>
-        <a (click)="reSendOtp()">Re-send OTP</a>
+        <input type="text" autocomplete="off" formControlName="otp" placeholder="OTP" name="otp" required>
+        <p style="text-align: left !important; margin: 40px 0px;">Please enter OTP you received on your Phone to continue with the chat</p>
+        <a (click)="reSendOtp()" style="cursor: pointer;">Re-send OTP</a>
         <div class="clearfix">
             <button type="submit" class="signupbtn" (click)="sendOtp()">Enter</button>
         </div>

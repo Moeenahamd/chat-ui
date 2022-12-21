@@ -198,8 +198,8 @@ li a .active{
 		margin-left: 10px;
         border-radius: 0px 60px 60px 0px;
         background-color: rgb(15,130,255);
-        padding: 15px 25px;
-        font-size: 22px;
+        padding: 15px;
+        font-size: 20px;
 		position: relative;
         color: white;
 	}
@@ -209,9 +209,9 @@ li a .active{
 		margin-right: 10px;
         border-radius: 60px 0px 0px 60px;
         background-color: rgba(0,0,0,0.3);
-        padding: 15px 25px;
+        padding: 15px;
         color: white;
-        font-size: 22px;
+        font-size: 20px;
 		position: relative;
 	}
 	.msg_time{
