@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Client } from '@twilio/conversations';
 import { AuthService } from 'src/app/services/auth.service';
 import { TwilioService } from 'src/app/services/twilio.service';
@@ -23,13 +24,14 @@ export class MobileChatComponent implements OnInit {
   isLoading = false;
   constructor(
     private twilioService: TwilioService,
-    private authService: AuthService) { }
+    private actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    var userPhone = localStorage.getItem('userPhone')?.replace('+','');
-    this.twilioService.getAccessToken(userPhone).subscribe((data:any)=>{
+    var userId = this.actRoute.snapshot.params['id'];
+    this.twilioService.getUserByUserId(userId).subscribe((data:any)=>{
       this.initClient(data.token);
     })
+    
   }
 
   async initClient(token:any){
@@ -51,7 +53,6 @@ export class MobileChatComponent implements OnInit {
   }
 
   async sendMessage(){
-    console.log(this.message.length)
     if( this.message && this.message != '')
     {
       await this.conversation.sendMessage(this.message);

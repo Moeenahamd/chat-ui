@@ -46,14 +46,14 @@ button:hover {
 
 /* Add padding to container elements */
 .container {
-  margin-top: 200px;
+  margin-top: 150px;
   padding: 5% 10%;
   border: 1px solid white; 
   border-radius:10px; 
   background:#053563;
   text-align: center;
   color: white;
-  height: 74vh;
+  height: calc(100vh - 170px);
 }
 
 /* Clear floats */

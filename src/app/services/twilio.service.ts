@@ -11,6 +11,13 @@ export class TwilioService {
     return this.http.get(this.baseUrl+'/accessToken/'+id);
   }
 
+  getUserByUserId(id:any){
+    const obj ={
+      userId:id
+    }
+    return this.http.post(this.baseUrl+'/getUserByUserId',obj);
+  }
+
   getConversations() {
     return this.http.get(this.baseUrl+'/getAllConversations');
   }
