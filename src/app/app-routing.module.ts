@@ -12,7 +12,7 @@ const routes: Routes = [
   {path:'admin', component:AdminLoginComponent},
   {path:'sign-up', component:MobileSignUpComponent},
   {path:'otp', component:MobileOtpComponent},
-  {path:':id', component:MobileChatComponent},
+  {path:'chat/:id', component:MobileChatComponent},
   {path:'', component:HomeComponent},
   
 ];
