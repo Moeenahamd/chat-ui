@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Client, State } from '@twilio/conversations';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
@@ -10,6 +10,7 @@ import { TwilioService } from 'src/app/services/twilio.service';
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent implements OnInit {
+  @ViewChild('scrollBottom') scrollBottom: any;
   client: any;
   isEmojiPickerVisible =false;
   conversation: any;
@@ -39,6 +40,13 @@ export class MessagesComponent implements OnInit {
   toggleDropDown(){
     this.toggle = !this.toggle;
   }
+
+  scrollToBottom(): void {
+    try {
+        this.scrollBottom.nativeElement.scrollTop = this.scrollBottom.nativeElement.scrollHeight;
+    } catch(err) { }                 
+  }
+
   ngOnInit(): void {
     this.getAllUsers()
     this.twilioService.getAccessToken('admin').subscribe((data:any)=>{
@@ -135,9 +143,9 @@ export class MessagesComponent implements OnInit {
     this.isLoading = true;
     const messages = await this.selectedConversation.getMessages(1000);
     this.messages = messages.items
-    debugger
     this.selectedConversation.updateLastReadMessageIndex(this.messages.length - 1)
     this.isMessages = true;
+    this.scrollToBottom()
   }
 
   async sendMessage(){

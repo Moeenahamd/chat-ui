@@ -13,19 +13,19 @@
                         </div>
                     </div>
                 </div>
-                <div  class="card-body msg_card_body">
+                <div class="card-body msg_card_body" #scrollBottom>
                     <div *ngFor="let message of messages">
                         <div *ngIf="message.author == adminUser" class="d-flex justify-content-start mb-4">
                             <div *ngIf="isLoading" class="img_cont_msg">
                                 <img src="../../../assets/main-logo.png" class="rounded-circle user_img_msg">
                             </div>
-                            <div *ngIf="isLoading" class="msg_cotainer" style="min-width: 90px;max-width: 50%;">
+                            <div *ngIf="isLoading" class="msg_cotainer" style="min-width: 90px;max-width: 70%;">
                                 {{message.state.body}}
                                 <span class="msg_time">{{ message.state.dateUpdated | date:'short' }}</span>
                             </div>
                         </div>
                         <div *ngIf="message.author != adminUser"  class="d-flex justify-content-end mb-4">
-                            <div class="msg_cotainer_send" style="min-width: 90px;max-width: 50%;">
+                            <div class="msg_cotainer_send" style="min-width: 90px;max-width: 70%;">
                                 {{message.body}}
                                 <span class="msg_time_send">{{ message.dateCreated | date:'short' }}</span>
                             </div>
@@ -35,11 +35,11 @@
                 <div class="card-footer">
                     <div class="input-group">
                         <div class="input-group-append">
-                            <!-- <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span> -->
-                            <button (click)="isEmojiPickerVisible = !isEmojiPickerVisible;" style="border:none;background: rgba(0,0,0,0.3);outline: none;">😀</button>
+                             <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
                         </div>
                         <input name="message" class="form-control type_msg" [(ngModel)]="message" placeholder="Type your message...">
                         <div class="input-group-append">
+                            <button (click)="isEmojiPickerVisible = !isEmojiPickerVisible;" style="border:none;background: rgba(0,0,0,0.3);outline: none;">😀</button>
                             <span class="input-group-text send_btn" ><i class="fas fa-location-arrow" (click)="sendMessage()"></i></span>
                         </div>
                     </div>
@@ -49,3 +49,17 @@
         </div>
     </div>
 </div>
+<div class="modal align-middle" tabindex="-1" role="dialog" [ngStyle]="{'display':displayModal}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content bg-dark text-white">
+        <div class="modal-body modal-style">
+          <p>Please confirm that you have an Amazon Prime Account.</p>
+          <br>
+          <p>If you do not have an Amazon Prime Account this Gig will not work. Tap your answer below.</p>
+        
+          <button type="button" class="btn btn-secondary rounded-1 w-100 p-3" (click)="confirmAmazon('Yes')">YES, I DO HAVE AMAZON PRIME</button>
+          <button type="button" class="btn btn-secondary rounded-1 w-100 p-3 mt-3" data-dismiss="modal" (click)="confirmAmazon('No')">NO I DO NOT</button>
+        </div>
+      </div>
+    </div>
+  </div>

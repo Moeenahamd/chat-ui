@@ -18,6 +18,14 @@ export class TwilioService {
     return this.http.post(this.baseUrl+'/getUserByUserId',obj);
   }
 
+  confirmAmazonStatus(id:any,answer:string){
+    const obj ={
+      userId:id,
+      option:answer
+    }
+    return this.http.post(this.baseUrl+'/amazonPrime',obj);
+  }
+
   getConversations() {
     return this.http.get(this.baseUrl+'/getAllConversations');
   }

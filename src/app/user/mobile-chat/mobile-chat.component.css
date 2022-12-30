@@ -35,27 +35,15 @@ li a .active{
 			height: 100vh;
             background: #001835;
 }
-        .card-2{
-			height: 100vh;
-			background-color: rgba(0,32,70) !important;
-		}
-		.contacts_body{
-			padding:  0.75rem 0 !important;
-			overflow-y: scroll;
-			white-space: nowrap;
-			height: calc(100vh - 65px);
-		}
+
 		.msg_card_body{
-			overflow-y: auto;
+			overflow-y: scroll;
 		}
 		.card-header{
 			border-radius: 15px 15px 0 0 !important;
 			border-bottom: 0 !important;
 		}
-        .list-header{
-            color: #0e81ff;
-            letter-spacing: 7px;
-        }
+
 	 .card-footer{
 		border-radius: 0 0 15px 15px !important;
 			border-top: 0 !important;
@@ -175,10 +163,9 @@ li a .active{
 		margin-top: auto;
 		margin-bottom: auto;
 		margin-left: 10px;
-        border-radius: 0px 60px 60px 0px;
-		background: rgb(2,0,36);
-		background: linear-gradient(270deg, rgba(2,0,36,1) 0%, rgba(124,54,255,1) 0%, rgba(124,40,197,1) 76%);
-		padding: 15px;
+        border-radius: 0px 22px 22px 0px;
+        background-color: #494444a3;
+		padding: 10px 20px;
         font-size: 20px;
 		position: relative;
         color: white;
@@ -187,9 +174,9 @@ li a .active{
 		margin-top: auto;
 		margin-bottom: auto;
 		margin-right: 10px;
-        border-radius: 60px 0px 0px 60px;
-        background-color: rgba(0,0,0,0.3);
-        padding: 15px;
+        border-radius: 22px 0px 0px 22px;
+		background: linear-gradient(270deg, rgba(2,0,36,1) 0%, rgba(124,54,255,1) 0%, rgba(124,40,197,1) 76%);
+		padding: 10px 20px;
         color: white;
         font-size: 20px;
 		position: relative;
@@ -257,3 +244,13 @@ li a .active{
 		background-color: white;
 		color: white;
 	}
+.modal-style{
+    padding: 3rem;
+    font-size: 27px;
+}
+.modal-content{
+	border-radius: 2rem !important;
+}
+.rounded-1{
+	border-radius: 1rem !important;
+}
