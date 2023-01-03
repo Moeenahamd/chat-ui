@@ -29,7 +29,6 @@ export class MobileChatComponent implements OnInit{
     private twilioService: TwilioService,
     private actRoute: ActivatedRoute) { }
   ngOnInit(): void {
-    const userAgent = window.navigator.userAgent;
     this.userId = this.actRoute.snapshot.params['id'];
     this.twilioService.getUserByUserId(this.userId).subscribe((data:any)=>{
       this.initClient(data.token);

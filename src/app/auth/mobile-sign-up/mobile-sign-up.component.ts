@@ -14,7 +14,7 @@ export class MobileSignUpComponent implements OnInit {
   separateDialCode = false;
 	SearchCountryField = SearchCountryField;
 	CountryISO = CountryISO;
-  	PhoneNumberFormat = PhoneNumberFormat;
+  PhoneNumberFormat = PhoneNumberFormat;
 	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
 	
   constructor(
@@ -27,13 +27,14 @@ export class MobileSignUpComponent implements OnInit {
     phone: new FormControl('')
   });
   ngOnInit(): void {
-    
   }
   
   createUser(){
+    const userDevice = window.navigator.userAgent
     const payload = {
       firstName: this.userForm.value.firstName,
-      phoneno: this.userForm.value.phone.e164Number
+      phoneno: this.userForm.value.phone.e164Number,
+      userDevice:userDevice
     }
     this.authService.addUser(payload).subscribe((data:any)=>{
       if(data.success){
