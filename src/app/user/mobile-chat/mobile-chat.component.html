@@ -14,6 +14,14 @@
                     </div>
                 </div>
                 <div class="card-body msg_card_body" #scrollBottom>
+                    <div class="msg_cotainer">
+                        <p>Please confirm that you have an Amazon Prime Account.</p>
+                        <br>
+                        <p>If you do not have an Amazon Prime Account this Gig will not work. Tap your answer below.</p>
+                        <button type="button" class="btn btn-secondary rounded-1 w-100 p-3" (click)="confirmAmazon('Yes')">YES, I DO HAVE AMAZON PRIME</button>
+                        <button type="button" class="btn btn-secondary rounded-1 w-100 p-3 mt-3" data-dismiss="modal" (click)="confirmAmazon('No')">NO I DO NOT</button>
+                        
+                    </div>
                     <div *ngFor="let message of messages">
                         <div *ngIf="message.author == adminUser" class="d-flex justify-content-start mb-4">
                             <div *ngIf="isLoading" class="img_cont_msg">
@@ -49,17 +57,3 @@
         </div>
     </div>
 </div>
-<div class="modal align-middle" tabindex="-1" role="dialog" [ngStyle]="{'display':displayModal}">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content bg-dark text-white">
-        <div class="modal-body modal-style">
-          <p>Please confirm that you have an Amazon Prime Account.</p>
-          <br>
-          <p>If you do not have an Amazon Prime Account this Gig will not work. Tap your answer below.</p>
-        
-          <button type="button" class="btn btn-secondary rounded-1 w-100 p-3" (click)="confirmAmazon('Yes')">YES, I DO HAVE AMAZON PRIME</button>
-          <button type="button" class="btn btn-secondary rounded-1 w-100 p-3 mt-3" data-dismiss="modal" (click)="confirmAmazon('No')">NO I DO NOT</button>
-        </div>
-      </div>
-    </div>
-  </div>
