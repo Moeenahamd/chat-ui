@@ -165,20 +165,22 @@ li a .active{
 		margin-left: 10px;
         border-radius: 0px 22px 22px 0px;
         background-color: #494444a3;
-		padding: 10px 20px;
-        font-size: 20px;
+		padding: 7px 10px;
+        font-size: 17px;
+		line-height: 1.2;
 		position: relative;
         color: white;
 	}
 	.msg_cotainer_send{
 		margin-top: auto;
 		margin-bottom: auto;
+		line-height: 1.2;
 		margin-right: 10px;
         border-radius: 22px 0px 0px 22px;
 		background: linear-gradient(270deg, rgba(2,0,36,1) 0%, rgba(124,54,255,1) 0%, rgba(124,40,197,1) 76%);
-		padding: 10px 20px;
+		padding: 7px 10px;
         color: white;
-        font-size: 20px;
+        font-size: 17px;
 		position: relative;
 	}
 	.msg_time{
